@@ -43,7 +43,7 @@
         android:background="@android:color/black"
         android:ems="10"
         android:fontFamily="@font/aclonica"
-        android:hint="Enter Full Name"
+        android:hint="EnterabcFull Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="#FFFFFF"
