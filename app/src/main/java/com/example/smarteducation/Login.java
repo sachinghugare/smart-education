@@ -24,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
     EditText mEmail,mPassword;
     Button mLoginBtn;
@@ -74,13 +76,14 @@ public class Login extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 // authenticate the user
-                userId = fAuth.getCurrentUser().getUid();
-                user = fAuth.getCurrentUser();
+
 
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+                            user = fAuth.getCurrentUser();
                                      if(!user.isEmailVerified()){
                                          Toast.makeText(Login.this, "Email Not Verified", Toast.LENGTH_SHORT).show();
                                          progressBar.setVisibility(View.GONE);
@@ -154,4 +157,5 @@ public class Login extends AppCompatActivity {
 
 
     }
+
 }
