@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mFullName,mEmail,mPassword,mPhone;
+    EditText mFullName,mEmail,mPassword,mPhone,mCollege,mDepartment,mClass,mDivision,mBatch;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -46,6 +46,11 @@ public class Register extends AppCompatActivity {
         mEmail      = findViewById(R.id.Email);
         mPassword   = findViewById(R.id.password);
         mPhone      = findViewById(R.id.phone);
+        mCollege      = findViewById(R.id.collegename);
+        mDepartment      = findViewById(R.id.DepartmentName);
+        mClass      = findViewById(R.id.Class);
+        mDivision      = findViewById(R.id.Division);
+        mBatch      =findViewById(R.id.Batch);
         mRegisterBtn= findViewById(R.id.registerBtn);
         mLoginBtn   = findViewById(R.id.createText);
 
@@ -63,15 +68,40 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
+                final String password = mPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
+                final String college = mCollege.getText().toString();
+                final String department = mDepartment.getText().toString();
+                final String classname = mClass.getText().toString();
+                final String division = mDivision.getText().toString();
+                final String batch = mBatch.getText().toString();
                 final String phone    = mPhone.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     mEmail.setError("Email is Required.");
                     return;
                 }
+                if(TextUtils.isEmpty(college)){
+                    mCollege.setError("College is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(department)){
+                    mDepartment.setError("Department is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(classname)){
+                    mClass.setError("Class is Required.");
+                    return;
+                }
+                if(TextUtils.isEmpty(division)){
+                    mDivision.setError("Division is Required.");
+                    return;
+                }
 
+                if(TextUtils.isEmpty(batch)){
+                    mBatch.setError("Batch is Required.");
+                    return;
+                }
                 if(TextUtils.isEmpty(password)){
                     mPassword.setError("Password is Required.");
                     return;
@@ -112,6 +142,12 @@ public class Register extends AppCompatActivity {
                             Map<String,Object> user = new HashMap<>();
                             user.put("fName",fullName);
                             user.put("email",email);
+                            user.put("password",password);
+                            user.put("college",college);
+                            user.put("department",department);
+                            user.put("class",classname);
+                            user.put("division",division);
+                            user.put("batch",batch);
                             user.put("phone",phone);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
