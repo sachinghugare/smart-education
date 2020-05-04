@@ -84,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+public void home(View view)
+{
+    startActivity(new Intent(getApplicationContext(),homepage.class));
+    finish();
+}
 
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();//logout
