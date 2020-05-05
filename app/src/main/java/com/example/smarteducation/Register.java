@@ -42,14 +42,14 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mFullName   = findViewById(R.id.fullName);
+        mFullName    = findViewById(R.id.fullName);
         mEmail      = findViewById(R.id.Email);
         mPassword   = findViewById(R.id.password);
         mPhone      = findViewById(R.id.phone);
-        mCollege      = findViewById(R.id.collegename);
-        mDepartment      = findViewById(R.id.DepartmentName);
+        mCollege    = findViewById(R.id.collegename);
+        mDepartment = findViewById(R.id.DepartmentName);
         mClass      = findViewById(R.id.Class);
-        mDivision      = findViewById(R.id.Division);
+        mDivision   = findViewById(R.id.Division);
         mBatch      =findViewById(R.id.Batch);
         mRegisterBtn= findViewById(R.id.registerBtn);
         mLoginBtn   = findViewById(R.id.createText);
@@ -58,7 +58,7 @@ public class Register extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
-        if(fAuth.getCurrentUser() != null){
+        if(fAuth.getCurrentUser() != null && fAuth.getCurrentUser().isEmailVerified()){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
         }
@@ -161,6 +161,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                             startActivity(new Intent(getApplicationContext(),Login.class));
+                            finish();
 
                         }else {
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -177,6 +178,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Login.class));
+                finish();
             }
         });
 
