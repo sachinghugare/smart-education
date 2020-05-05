@@ -40,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
     TextView fullName,email,phone,verifyMsg;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
+    StorageReference storageReference;
     String userId;
     FirebaseUser user;
-    StorageReference storageReference;
+
 
 
     @Override
@@ -64,15 +65,16 @@ public class MainActivity extends AppCompatActivity {
 
          if(user!=null) {
 
-             final DocumentReference documentReference = fStore.collection("users").document(userId);
+             DocumentReference documentReference = fStore.collection("users").document(userId);
              documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
                  @Override
                  public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                     fullName.setText(documentSnapshot.getString("fName"));
-                     phone.setText(documentSnapshot.getString("phone"));
-                     email.setText(documentSnapshot.getString("email"));
+                         fullName.setText(documentSnapshot.getString("fName"));
+                         phone.setText(documentSnapshot.getString("phone"));
+                         email.setText(documentSnapshot.getString("email"));
                  }
              });
+
 
          }
          else
@@ -95,6 +97,4 @@ public void home(View view)
         startActivity(new Intent(getApplicationContext(),Login.class));
         finish();
     }
-
-
 }

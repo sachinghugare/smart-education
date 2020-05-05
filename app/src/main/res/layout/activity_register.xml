@@ -59,34 +59,37 @@
                 android:layout_width="350dp"
                 android:layout_height="81dp"
                 tools:layout_editor_absoluteX="27dp"
-                tools:layout_editor_absoluteY="15dp">
+                tools:layout_editor_absoluteY="15dp"
+                android:id="@+id/radioGroup">
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/rstudent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="120dp"
                     android:layout_marginLeft="100dp"
                     android:layout_marginEnd="120dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/common_google_signin_btn_text_dark_focused"
                     android:text="Student"
+                    android:textStyle="bold"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:onClick="checkButton"/>
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/rteacher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="120dp"
                     android:layout_marginEnd="120dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@android:color/black"
                     android:text="Teacher"
                     android:textAlignment="center"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:onClick="checkButton"
+                    />
             </RadioGroup>
 
             <EditText
